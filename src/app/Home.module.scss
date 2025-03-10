@@ -1,0 +1,16 @@
+.mainContainer {
+    position: relative;
+    min-width: 100vw;
+    min-height: calc(100vh - 96px);
+}
+
+.gameContainer {
+    position: relative;
+    z-index: 100;
+    min-height: calc(100vh - 96px);
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    height: fit-content;
+}

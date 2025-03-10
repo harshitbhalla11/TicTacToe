@@ -1,0 +1,93 @@
+.pageWrapper {
+    background-color: #5a1e76;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  
+  .authContainer {
+    width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    background: #fff;
+  }
+  
+  .menu {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .menuButton {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: #5a1e76;
+  }
+  
+  .active {
+    border-bottom: 2px solid #5a1e76;
+    font-weight: bold;
+  }
+  
+  .authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .authInput {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .authButton {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: none;
+    background: #0070f3;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .authHr {
+    margin: 2rem 0;
+  }
+  
+  .authError {
+    color: red;
+    margin-top: 1rem;
+  }
+
+  
+  .formGroup{
+    label{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+  }
+
+  .authButton{
+    display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+  }

@@ -1,0 +1,78 @@
+.navbar {
+    width: 100%;
+    background: transparent;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    color: var(--yellow);
+  }
+  
+  .navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding-right: 50px;
+  }
+  
+  .brand {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+   
+    display: flex;
+    align-items: center;
+  }
+  
+  .navLinks {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--yellow);
+  }
+  
+  .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--yellow);
+  }
+  
+  .active {
+    background-color: var(--yellow);
+    color: black !important;
+    padding: 10px 15px;
+    border-radius: 15px !important;
+    border-radius: 4px;
+  }
+  
+  .active .icon {
+    color: black !important;
+  }
+  
+  .greeting {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--yellow);
+    font-weight: 700;
+  }
+  
+  .icon {
+    display: inline-flex;
+    vertical-align: middle;
+    color: var(--yellow);
+  }
+  
+  .logo {
+    max-width: 64px;
+  }
+  
