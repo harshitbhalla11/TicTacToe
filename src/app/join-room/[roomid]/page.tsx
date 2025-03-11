@@ -1,22 +1,25 @@
-"use client";
+"use client"
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { ref, get, update } from "firebase/database";
 import { db } from "@/app/firebase";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
-import styles from "../JoinRoom.module.scss"; 
+import styles from "../JoinRoom.module.scss";
 
-const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
+const RoomDetailsPage = () => {
   const router = useRouter();
+  const { roomid } = useParams(); // Get the dynamic route parameter here
   const user = useSelector((state: RootState) => state.auth.user);
   const [roomData, setRoomData] = useState<any>(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!roomid) return;
+
     const fetchRoomDetails = async () => {
       try {
-        const roomRef = ref(db, `rooms/${params.roomid}`);
+        const roomRef = ref(db, `rooms/${roomid}`);
         const snapshot = await get(roomRef);
 
         if (!snapshot.exists()) {
@@ -33,7 +36,7 @@ const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
     };
 
     fetchRoomDetails();
-  }, [params.roomid]);
+  }, [roomid]);
 
   const handleJoinRoom = async () => {
     if (!user) {
@@ -47,7 +50,7 @@ const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
     }
 
     try {
-      const roomRef = ref(db, `rooms/${params.roomid}`);
+      const roomRef = ref(db, `rooms/${roomid}`);
       await update(roomRef, {
         opponent: {
           uid: user.uid,
@@ -57,7 +60,7 @@ const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
         updatedAt: { ".sv": "timestamp" },
       });
 
-      router.push(`/room/${params.roomid}`);
+      router.push(`/room/${roomid}`);
     } catch (err) {
       console.error("Error joining room:", err);
       setError("An error occurred while trying to join the room.");
@@ -70,7 +73,7 @@ const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
         <p className={styles.error}>{error}</p>
       ) : roomData ? (
         <div className={styles.joinRoomDetails}>
-          <h2>Room: {params.roomid}</h2>
+          <h2>Room: {roomid}</h2>
           <p>Host: {roomData.host?.displayName || "Unknown"}</p>
           <p>Status: {roomData.status}</p>
           {!roomData.opponent ? (

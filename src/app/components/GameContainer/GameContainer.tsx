@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/redux/store/store";
+import type { AppDispatch, RootState } from "@/redux/store/store";
 import { makeMoveAsync } from "@/redux/feature/roomSlice";
 import GameBoard from "../GameBaord/GameBoard";
 import styles from "./GameContainer.module.scss";
@@ -13,7 +13,8 @@ export interface GameContainerProps {
 }
 
 export default function GameContainer({ roomId, roomData }: GameContainerProps) {
-  const dispatch = useDispatch();
+  // Use AppDispatch as the type for dispatch
+  const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector((state: RootState) => state.auth.user);
   
   const isPlayerTurn = roomData.currentRound.turn === currentUser?.uid;
