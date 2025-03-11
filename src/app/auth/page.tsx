@@ -10,7 +10,7 @@ import {
 import { auth, googleProvider } from "@/app/firebase";
 import withNonAuth from "@/hoc/withNonAuth";
 import styles from "./Auth.module.scss";
-import {FaSignInAlt,FaGoogle, FaUser, FaEnvelope, FaLock } from "react-icons/fa"; // Importing icons
+import {FaSignInAlt,FaGoogle, FaUser, FaEnvelope, FaLock } from "react-icons/fa"; 
 
 function AuthPage() {
   const router = useRouter();

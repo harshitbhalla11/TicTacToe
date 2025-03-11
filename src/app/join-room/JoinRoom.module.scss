@@ -1,0 +1,95 @@
+.joinRoomContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc( 100vh - 96px); 
+    background-color: var(--secondary);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: auto;
+
+  }
+  
+  .joinRoomBox {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .joinRoomBox {
+    h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #facc15;
+      text-transform: uppercase;
+    }
+  }
+  
+  
+  .roomInput {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .roomInput::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .roomInput:focus {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+  }
+  
+  .joinButton {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #facc15;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .joinButton:hover {
+    background-color: #ffd700;
+    box-shadow: 0px 5px 15px rgba(255, 215, 0, 0.4);
+  }
+  
+  .error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 10px;
+    background: rgba(255, 77, 77, 0.2);
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  
+
+  .joinRoomDetails {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }

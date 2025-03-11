@@ -26,6 +26,7 @@ const JoinRoomPage = () => {
         value={roomCode}
         onChange={(e) => setRoomCode(e.target.value)}
         className={styles.roomInput}
+        maxLength={5}
       />
       <button onClick={handleNavigateToRoom} className={styles.joinButton}>
         Proceed

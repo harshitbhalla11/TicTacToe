@@ -13,7 +13,6 @@
     "@reduxjs/toolkit": "^2.6.1",
     "bootstrap": "^5.3.3",
     "firebase": "^11.4.0",
-    "firebaseui": "^6.1.0",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

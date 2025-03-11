@@ -65,11 +65,11 @@ const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
   };
 
   return (
-    <div className={styles.roomDetailsContainer}>
+    <div className={styles.joinRoomContainer}>
       {error ? (
         <p className={styles.error}>{error}</p>
       ) : roomData ? (
-        <>
+        <div className={styles.joinRoomDetails}>
           <h2>Room: {params.roomid}</h2>
           <p>Host: {roomData.host?.displayName || "Unknown"}</p>
           <p>Status: {roomData.status}</p>
@@ -80,7 +80,7 @@ const RoomDetailsPage = ({ params }: { params: { roomid: string } }) => {
           ) : (
             <p>This room is full.</p>
           )}
-        </>
+        </div>
       ) : (
         <p>Loading room details...</p>
       )}

@@ -1,6 +1,6 @@
 // redux/slices/roomSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createRoom } from "@/utils/roomUtils";
+import { createRoom, updateBoard } from "@/utils/roomUtils";
 import { RoomData } from "@/types/roomTypes";
 
 export const createRoomAsync = createAsyncThunk(
@@ -8,6 +8,14 @@ export const createRoomAsync = createAsyncThunk(
   async (host: any) => {
     const roomId = await createRoom(host);
     return roomId;
+  }
+);
+
+export const makeMoveAsync = createAsyncThunk(
+  "room/makeMove",
+  async ({ roomId, index, playerUid }: { roomId: string; index: number; playerUid: string }) => {
+    await updateBoard(roomId, index, playerUid);
+    return { index, playerUid };
   }
 );
 
@@ -40,6 +48,15 @@ export const roomSlice = createSlice({
       })
       .addCase(createRoomAsync.rejected, (state) => {
         state.status = "failed";
+      })
+      .addCase(makeMoveAsync.fulfilled, (state, action) => {
+        if (state.roomData) {
+          state.roomData.currentRound.board[action.payload.index] = action.payload.playerUid;
+          state.roomData.currentRound.turn = state.roomData.currentRound.turn ?? '';
+            state.roomData.currentRound.turn === state.roomData.host?.uid
+              ? state.roomData.opponent?.uid
+              : state.roomData.host?.uid;
+        }
       });
   },
 });
