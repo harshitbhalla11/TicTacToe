@@ -64,21 +64,27 @@ export async function updateBoard(roomId: string, index: number, playerUid: stri
 
   const winner = checkWinner(newBoard);
 
+  const isDraw = !winner && newBoard.every(cell => cell !== "");
+
+  let roundStatus = "in_progress";
+  let updatedWinner = null;
+  if (winner) {
+    roundStatus = "finished";
+    updatedWinner = roomData.host.uid === playerUid ? roomData.host.symbol : roomData.opponent.symbol;
+  } else if (isDraw) {
+    roundStatus = "finished";
+  }
+
   await update(roomRef, {
     "currentRound/board": newBoard,
     "currentRound/turn":
       roomData.host.uid === playerUid ? roomData.opponent?.uid : roomData.host.uid,
-    "currentRound/winner":
-      winner != null
-        ? roomData.host.symbol === winner
-          ? roomData.host.symbol
-          : roomData.opponent.symbol
-        : null,
-    "currentRound/status": winner != null ? "finished" : "in_progress",
+    "currentRound/winner": updatedWinner,
+    "currentRound/status": roundStatus,
     updatedAt: { ".sv": "timestamp" },
   });
 
-  if (winner) {
+  if (winner || isDraw) {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     await resetBoardAndUpdateScore(roomId);
   }

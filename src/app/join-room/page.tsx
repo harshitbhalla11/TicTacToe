@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./JoinRoom.module.scss";
+import TictacproText from "../components/TicTacProText/TictacproText";
 
 const JoinRoomPage = () => {
   const router = useRouter();
@@ -18,7 +19,9 @@ const JoinRoomPage = () => {
   };
 
   return (
-    <div className={styles.joinRoomContainer}>
+    <>
+      <TictacproText />
+      <div className={styles.joinRoomContainer}>
       <h2>Enter a Room Code</h2>
       <input
         type="text"
@@ -33,6 +36,9 @@ const JoinRoomPage = () => {
       </button>
       {error && <p className={styles.error}>{error}</p>}
     </div>
+    </>
+   
+
   );
 };
 

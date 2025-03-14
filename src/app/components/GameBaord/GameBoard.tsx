@@ -5,9 +5,11 @@ import styles from "./GameBoard.module.scss";
 interface GameBoardProps {
   board: string[];
   onMove: (index: number) => void;
+  gameOver: boolean;
+  hostSymbol: string;
 }
 
-const GameBoard = ({ board, onMove }: GameBoardProps) => {
+const GameBoard = ({ board, onMove, gameOver ,hostSymbol}: GameBoardProps) => {
   return (
     <div className={styles.board}>
       {board.map((cell, index) => (
@@ -15,9 +17,10 @@ const GameBoard = ({ board, onMove }: GameBoardProps) => {
           key={index}
           className={styles.cell}
           onClick={() => onMove(index)}
-          disabled={cell !== ""}
+          disabled={gameOver || cell !== ""}
         >
-          {cell === "X" ? "❌" : cell === "O" ? "⭕" : ""}
+          {cell === "X" ? <div className={`${hostSymbol=='X'?styles.hostSymbol:styles.oppSymbol} ${styles.symbolX}`}>X</div> :
+         cell === "O" ?  <div className={`${hostSymbol=='O'?styles.hostSymbol:styles.oppSymbol} ${styles.symbolO}`}>O</div>    :''       }
         </button>
       ))}
     </div>

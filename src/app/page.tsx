@@ -10,7 +10,6 @@ function Home() {
     <div className={styles.mainContainer}>
       <div className={styles.gameContainer}>
         <RoomOptions />
-        {/* <GameContainer /> */}
       </div>
 
       <TictacproText />

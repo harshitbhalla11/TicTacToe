@@ -6,6 +6,7 @@ import { db } from "@/app/firebase";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import styles from "../JoinRoom.module.scss";
+import TictacproText from "@/app/components/TicTacProText/TictacproText";
 
 const RoomDetailsPage = () => {
   const router = useRouter();
@@ -77,7 +78,9 @@ const RoomDetailsPage = () => {
   
 
   return (
-    <div className={styles.joinRoomContainer}>
+    <>
+     <TictacproText />
+     <div className={styles.joinRoomContainer}>
       {error ? (
         <p className={styles.error}>{error}</p>
       ) : roomData ? (
@@ -97,6 +100,8 @@ const RoomDetailsPage = () => {
         <p>Loading room details...</p>
       )}
     </div>
+    </>
+   
   );
 };
 

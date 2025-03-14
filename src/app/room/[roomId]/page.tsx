@@ -10,6 +10,7 @@ import styles from "./RoomPage.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
+import TictacproText from "@/app/components/TicTacProText/TictacproText";
 
 const RoomPage = () => {
   const { roomId } = useParams() as { roomId: string };
@@ -65,7 +66,9 @@ const RoomPage = () => {
   }
 
   return (
-    <div className={styles.roomContainer}>
+    <>
+      <TictacproText />
+      <div className={styles.roomContainer}>
       {!roomData.opponent ? (
         <div className={styles.roomDetails}>
           <h2>
@@ -132,6 +135,8 @@ const RoomPage = () => {
         <GameContainer roomId={roomId} roomData={roomData} />
       )}
     </div>
+    </>
+ 
   );
 };
 
