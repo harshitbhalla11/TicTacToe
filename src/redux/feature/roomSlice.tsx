@@ -1,4 +1,3 @@
-// redux/slices/roomSlice.ts
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createRoom, updateBoard } from "@/utils/roomUtils";
 import { RoomData } from "@/types/roomTypes";
@@ -13,7 +12,15 @@ export const createRoomAsync = createAsyncThunk(
 
 export const makeMoveAsync = createAsyncThunk(
   "room/makeMove",
-  async ({ roomId, index, playerUid }: { roomId: string; index: number; playerUid: string }) => {
+  async ({
+    roomId,
+    index,
+    playerUid,
+  }: {
+    roomId: string;
+    index: number;
+    playerUid: string;
+  }) => {
     await updateBoard(roomId, index, playerUid);
     return { index, playerUid };
   }
@@ -51,11 +58,16 @@ export const roomSlice = createSlice({
       })
       .addCase(makeMoveAsync.fulfilled, (state, action) => {
         if (state.roomData) {
-          state.roomData.currentRound.board[action.payload.index] = action.payload.playerUid;
-          state.roomData.currentRound.turn = state.roomData.currentRound.turn ?? '';
-            state.roomData.currentRound.turn === state.roomData.host?.uid
-              ? state.roomData.opponent?.uid
-              : state.roomData.host?.uid;
+          const { index, playerUid } = action.payload;
+          const symbol =
+            playerUid === state.roomData.host.uid
+              ? state.roomData.host.symbol
+              : state.roomData.opponent?.symbol || "";
+          state.roomData.currentRound.board[index] = symbol;
+          state.roomData.currentRound.turn =
+            playerUid === state.roomData.host.uid
+              ? state.roomData.opponent!.uid
+              : state.roomData.host.uid;
         }
       });
   },

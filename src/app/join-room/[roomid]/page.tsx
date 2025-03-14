@@ -9,7 +9,7 @@ import styles from "../JoinRoom.module.scss";
 
 const RoomDetailsPage = () => {
   const router = useRouter();
-  const { roomid } = useParams(); // Get the dynamic route parameter here
+  const { roomid } = useParams(); 
   const user = useSelector((state: RootState) => state.auth.user);
   const [roomData, setRoomData] = useState<any>(null);
   const [error, setError] = useState("");
@@ -43,29 +43,38 @@ const RoomDetailsPage = () => {
       setError("You must be logged in to join a room.");
       return;
     }
-
+  
+    if (roomData?.host?.uid === user.uid) {
+      setError("You cannot join your own room as an opponent.");
+      return;
+    }
+  
     if (roomData?.opponent) {
       setError("This room already has an opponent.");
       return;
     }
-
+  
     try {
       const roomRef = ref(db, `rooms/${roomid}`);
+      const opponentSymbol = roomData.host.symbol === "X" ? "O" : "X";
+
       await update(roomRef, {
         opponent: {
           uid: user.uid,
           displayName: user.displayName || user.email,
+          symbol: opponentSymbol,
         },
         status: "in_progress",
         updatedAt: { ".sv": "timestamp" },
       });
-
+  
       router.push(`/room/${roomid}`);
     } catch (err) {
       console.error("Error joining room:", err);
       setError("An error occurred while trying to join the room.");
     }
   };
+  
 
   return (
     <div className={styles.joinRoomContainer}>

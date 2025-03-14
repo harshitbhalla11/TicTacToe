@@ -13,7 +13,6 @@ export interface GameContainerProps {
 }
 
 export default function GameContainer({ roomId, roomData }: GameContainerProps) {
-  // Use AppDispatch as the type for dispatch
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector((state: RootState) => state.auth.user);
   
@@ -25,7 +24,10 @@ export default function GameContainer({ roomId, roomData }: GameContainerProps) 
   const drawScore = roomData.overall.draws;
 
   const handleMove = (index: number) => {
+    console.log('user move')
+    console.log('isPlayerTurn',isPlayerTurn)
     if (!isPlayerTurn || board[index] !== "" || !currentUser) return; 
+    console.log("Making a move...");
     dispatch(makeMoveAsync({ roomId, index, playerUid: currentUser.uid }));
   };
 
@@ -46,7 +48,7 @@ export default function GameContainer({ roomId, roomData }: GameContainerProps) 
 
       <div className={styles.scoreboard}>
         <div className={styles.score}>
-          <span className={styles.scoreLabel}>Player X</span>
+          <span className={styles.scoreLabel}>{`${roomData.host.displayName} ${roomData.host.symbol}`}</span>
           <span className={styles.scoreValue}>{playerXScore}</span>
         </div>
         <div className={styles.score}>
@@ -54,16 +56,18 @@ export default function GameContainer({ roomId, roomData }: GameContainerProps) 
           <span className={styles.scoreValue}>{drawScore}</span>
         </div>
         <div className={styles.score}>
-          <span className={styles.scoreLabel}>Player O</span>
+          <span className={styles.scoreLabel}>
+          {`${roomData.opponent?.displayName} ${roomData.opponent?.symbol}`}
+            </span>
           <span className={styles.scoreValue}>{playerOScore}</span>
         </div>
       </div>
 
       <GameBoard board={board} onMove={handleMove} />
 
-      <button className={styles.newGameButton} onClick={handleNewGame} disabled={!roomData.currentRound.winner}>
+      {/* <button className={styles.newGameButton} onClick={handleNewGame} disabled={!roomData.currentRound.winner}>
         New Game
-      </button>
+      </button> */}
     </div>
   );
 }

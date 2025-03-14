@@ -1,7 +1,7 @@
-// types/roomTypes.ts
 export interface Player {
     uid: string;
     displayName?: string;
+    symbol: string;
   }
   
   export interface CurrentRound {

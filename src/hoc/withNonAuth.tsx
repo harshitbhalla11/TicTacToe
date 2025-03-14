@@ -1,4 +1,3 @@
-// hoc/withNonAuth.tsx
 "use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -16,7 +15,6 @@ const withNonAuth = (WrappedComponent: React.ComponentType<any>) => {
       }
     }, [user, router]);
 
-    // Optionally, display a loading indicator while checking auth status
     if (user) {
       return <p>Loading...</p>;
     }
