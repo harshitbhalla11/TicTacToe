@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import styles from "../JoinRoom.module.scss";
 import TictacproText from "@/app/components/TicTacProText/TictacproText";
+import withAuth from "@/hoc/withAuth";
 
 const RoomDetailsPage = () => {
   const router = useRouter();
@@ -105,4 +106,4 @@ const RoomDetailsPage = () => {
   );
 };
 
-export default RoomDetailsPage;
+export default withAuth(RoomDetailsPage);

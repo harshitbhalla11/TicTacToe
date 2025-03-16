@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./JoinRoom.module.scss";
 import TictacproText from "../components/TicTacProText/TictacproText";
+import withAuth from "@/hoc/withAuth";
 
 const JoinRoomPage = () => {
   const router = useRouter();
@@ -42,4 +43,4 @@ const JoinRoomPage = () => {
   );
 };
 
-export default JoinRoomPage;
+export default withAuth(JoinRoomPage);

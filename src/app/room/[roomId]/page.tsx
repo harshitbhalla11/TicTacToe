@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store/store";
 import TictacproText from "@/app/components/TicTacProText/TictacproText";
+import withAuth from "@/hoc/withAuth";
 
 const RoomPage = () => {
   const { roomId } = useParams() as { roomId: string };
@@ -140,4 +141,4 @@ const RoomPage = () => {
   );
 };
 
-export default RoomPage;
+export default withAuth(RoomPage);
