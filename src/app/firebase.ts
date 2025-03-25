@@ -1,21 +1,21 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+    import { initializeApp } from "firebase/app";
+    import { getAuth, GoogleAuthProvider } from "firebase/auth";
+    import { getDatabase } from "firebase/database";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyB1caLxnXHjO6Ivb0Sg3QD7nHbTVdQ1ovA",
-    authDomain: "tic-tac-toe-v2-38925.firebaseapp.com",
-    projectId: "tic-tac-toe-v2-38925",
-    databaseURL:"https://tic-tac-toe-v2-38925-default-rtdb.europe-west1.firebasedatabase.app/",
-    storageBucket: "tic-tac-toe-v2-38925.firebasestorage.app",
-    messagingSenderId: "139675005772",
-    appId: "1:139675005772:web:61b491d3ff88cd94b315e9",
-    measurementId: "G-DLE9Q7R4VQ"
-};
+    const firebaseConfig = {
+        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+        authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+        databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+        storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+        messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+        appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+        measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+    };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
-const db = getDatabase(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    const db = getDatabase(app);
 
-export { auth, googleProvider, db };
+    export { auth, googleProvider, db };
